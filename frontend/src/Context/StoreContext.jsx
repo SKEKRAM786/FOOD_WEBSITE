@@ -29,6 +29,9 @@ const StoreContextProvider = (props) => {
     const currency = "₹";
     const deliveryCharge = 50;
 
+    /** Prefer React state, fall back to localStorage so cart API works right after login before re-render. */
+    const authToken = () => (token || (typeof localStorage !== "undefined" ? localStorage.getItem("token") : "") || "");
+
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -36,15 +39,25 @@ const StoreContextProvider = (props) => {
         else {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         }
-        if (token) {
-            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
+        const t = authToken();
+        if (t) {
+            try {
+                await axios.post(url + "/api/cart/add", { itemId }, { headers: { token: t } });
+            } catch (e) {
+                console.warn("Cart sync failed", e);
+            }
         }
     }
 
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-        if (token) {
-            await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
+        const t = authToken();
+        if (t) {
+            try {
+                await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token: t } });
+            } catch (e) {
+                console.warn("Cart sync failed", e);
+            }
         }
     }
 
@@ -77,9 +90,25 @@ const StoreContextProvider = (props) => {
         }
     }
 
-    const loadCartData = async (token) => {
-        const response = await axios.post(url + "/api/cart/get", {}, { headers: token });
-        setCartItems(response.data.cartData);
+    const loadCartData = async (auth) => {
+        const t =
+            typeof auth === "string" && auth
+                ? auth
+                : auth && typeof auth === "object" && auth.token
+                  ? auth.token
+                  : localStorage.getItem("token");
+        if (!t) return;
+        try {
+            const response = await axios.post(url + "/api/cart/get", {}, { headers: { token: t } });
+            if (response.data?.success) {
+                setCartItems(response.data.cartData || {});
+            } else {
+                setCartItems({});
+            }
+        } catch (e) {
+            console.warn("Could not load cart", e);
+            setCartItems({});
+        }
     }
 
     useEffect(() => {

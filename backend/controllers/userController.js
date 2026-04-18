@@ -36,7 +36,10 @@ const loginUser = async (req,res) => {
 const registerUser = async (req,res) => {
     const {name, email, password} = req.body;
     try{
-        
+        if (!name || !String(name).trim()) {
+            return res.json({success:false,message: "Please enter your name"})
+        }
+
         const exists = await userModel.findOne({email})
         if(exists){
             return res.json({success:false,message: "User already exists"})
@@ -61,7 +64,10 @@ const registerUser = async (req,res) => {
 
     } catch(error){
         console.log(error);
-        res.json({success:false,message:"Error"})
+        const msg = error?.code === 11000
+            ? "User already exists"
+            : (error?.message || "Error");
+        res.json({success:false, message: msg})
     }
 }
 
