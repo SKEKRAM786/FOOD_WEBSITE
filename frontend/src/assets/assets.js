@@ -1,5 +1,4 @@
 import basket_icon from './basket_icon.png'
-import logo from './logo.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
 import menu_1 from './menu_1.png'
@@ -10,6 +9,12 @@ import menu_5 from './menu_5.png'
 import menu_6 from './menu_6.png'
 import menu_7 from './menu_7.png'
 import menu_8 from './menu_8.png'
+import menu_biryani from './biryani.jpg'
+import dish_biryani_1 from './biryani.jpg'
+import dish_biryani_2 from './biryani 2.jpg'
+import dish_biryani_3 from './biryani 3.jpg'
+import dish_biryani_4 from './biryani 4.jpg'
+import dish_biryani_5 from './biryani5.jpg'
 
 import food_1 from './food_1.png'
 import food_2 from './food_2.png'
@@ -43,12 +48,11 @@ import food_29 from './food_29.png'
 import food_30 from './food_30.png'
 import food_31 from './food_31.png'
 import food_32 from './food_32.png'
+import food_33 from './food33.png'
 
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
 import remove_icon_red from './remove_icon_red.png'
-import app_store from './app_store.png'
-import play_store from './play_store.png'
 import linkedin_icon from './linkedin_icon.png'
 import facebook_icon from './facebook_icon.png'
 import twitter_icon from './twitter_icon.png'
@@ -63,7 +67,6 @@ import checked from './checked.png'
 import un_checked from './un_checked.png'
 
 export const assets = {
-    logo,
     basket_icon,
     header_img,
     search_icon,
@@ -71,8 +74,6 @@ export const assets = {
     add_icon_green,
     add_icon_white,
     remove_icon_red,
-    app_store,
-    play_store,
     linkedin_icon,
     facebook_icon,
     twitter_icon,
@@ -118,6 +119,10 @@ export const menu_list = [
     {
         menu_name: "Noodles",
         menu_image: menu_8
+    },
+    {
+        menu_name: "Biryani",
+        menu_image: menu_biryani
     }]
 
 export const food_list = [
@@ -350,5 +355,47 @@ export const food_list = [
         price: 15,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Noodles"
+    }, {
+        _id: "33",
+        name: "Featured dish",
+        image: food_33,
+        price: 16,
+        description: "Food provides essential nutrients for overall health and well-being",
+        category: "Salad"
+    }, {
+        _id: "34",
+        name: "Chicken Biryani",
+        image: dish_biryani_1,
+        price: 189,
+        description: "Aromatic basmati rice layered with tender chicken, whole spices, and herbs — slow-cooked for deep flavour.",
+        category: "Biryani"
+    }, {
+        _id: "35",
+        name: "Mutton Biryani",
+        image: dish_biryani_2,
+        price: 199,
+        description: "Rich dum-style biryani with succulent mutton, caramelised onions, and a hint of saffron.",
+        category: "Biryani"
+    }, {
+        _id: "36",
+        name: "Hyderabadi Biryani",
+        image: dish_biryani_3,
+        price: 219,
+        description: "Authentic Hyderabadi masala, long-grain rice, and bold spice — served with cooling raita in mind.",
+        category: "Biryani"
+    }, {
+        _id: "37",
+        name: "Dum Biryani",
+        image: dish_biryani_4,
+        price: 229,
+        description: "Sealed-pot dum cooking locks in steam and aroma — full-bodied layers perfect for lunch or dinner.",
+        category: "Biryani"
+    }, {
+        _id: "38",
+        name: "Keema Biryani",
+        image: dish_biryani_5,
+        price: 249,
+        description: "Fragrant rice tossed with spiced minced meat, fresh mint, and a satisfying, savoury finish.",
+        category: "Biryani"
     }
 ]

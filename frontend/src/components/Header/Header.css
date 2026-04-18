@@ -1,55 +1,264 @@
 .header{
     height: 34vw;
+    min-height: 260px;
+    max-height: 540px;
     margin: 30px auto;
-    background: url('/header_img.png') no-repeat;
-    background-size:contain;
     position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bh-footer-bg, #0f172a);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
 }
+
+.header-slides{
+    position: absolute;
+    inset: 0;
+}
+
+.header-slide{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out;
+    pointer-events: none;
+}
+
+.header-slide--active{
+    opacity: 1;
+    z-index: 0;
+}
+
+.header-slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.header::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        105deg,
+        rgba(15, 23, 42, 0.92) 0%,
+        rgba(15, 23, 42, 0.72) 28%,
+        rgba(15, 23, 42, 0.35) 52%,
+        rgba(15, 23, 42, 0.08) 78%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
 .header-contents{
     position: absolute;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 1.5vw;
-    max-width: 50%;
-    bottom: 10%;
-    left: 6vw;
-    animation: fadeIn 3s;
+    gap: clamp(14px, 1.8vw, 26px);
+    max-width: min(52%, 560px);
+    bottom: clamp(12%, 10vw, 14%);
+    left: clamp(24px, 6vw, 72px);
+    padding-right: 16px;
 }
+
+.header-home-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 10px 16px 10px 14px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    font-size: clamp(0.85rem, 1.15vw, 1.02rem);
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    order: -1;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    z-index: 3;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.header-home-location:hover {
+    background: rgba(15, 23, 42, 0.72);
+    border-color: rgba(94, 234, 212, 0.65);
+}
+
+.header-home-location:focus-visible {
+    outline: 2px solid #5eead4;
+    outline-offset: 3px;
+}
+
+.header-home-location:active {
+    transform: scale(0.98);
+}
+
+.header-home-location-pin {
+    display: flex;
+    color: #5eead4;
+    flex-shrink: 0;
+}
+
+.header-home-location-text {
+    font-weight: 700;
+}
+
+.header-home-location-text strong {
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.header-home-location-placeholder {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.96);
+}
+
+.header-copy{
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.2vw, 16px);
+    animation: headerCopyIn 0.55s ease-out;
+}
+
+@keyframes headerCopyIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .header-contents h2{
-    font-weight:500;
-    color: white;
-    font-size: max(4.5vw,22px);
+    font-weight: 700;
+    color: #ffffff;
+    font-size: clamp(1.5rem, 4.2vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
-.header-contents p{
-    color: white;
-    font-size: 1vw;
+
+.header-desc{
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(0.8rem, 1.05vw, 0.98rem);
+    line-height: 1.65;
+    font-weight: 400;
+    max-width: 42rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
-.header-contents button{
-    border: none;
-    color: #747474;
+
+.header-desc--short{
+    display: none;
     font-weight: 500;
-    padding: 1vw 2.3vw;
-    background: white;
-    font-size: max(1vw,13px);
-    border-radius: 50px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
 }
+
+.header-cta{
+    border: none;
+    color: var(--bh-primary-dark);
+    font-weight: 600;
+    padding: clamp(10px, 1.1vw, 14px) clamp(22px, 2.4vw, 32px);
+    background: #ffffff;
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 4px;
+}
+
+.header-cta:hover{
+    background: var(--bh-surface-tint, #f0fdfa);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.header-dots{
+    position: absolute;
+    z-index: 2;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(8px);
+}
+
+.header-dot{
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s, width 0.2s;
+}
+
+.header-dot:hover{
+    background: rgba(255,255,255,0.8);
+}
+
+.header-dot--active{
+    background: #ffffff;
+    width: 22px;
+    border-radius: 999px;
+    transform: scale(1);
+}
+
 @media (max-width:1050px) {
     .header{
         height: 38vw;
+        min-height: 240px;
     }
     .header-contents{
-        max-width: 45%;
+        max-width: 58%;
     }
 }
+
 @media(max-width:750px){
+    .header{
+        border-radius: 16px;
+        min-height: 280px;
+        height: 52vw;
+    }
     .header-contents{
-        max-width: 55%;
+        max-width: 88%;
+        bottom: 18%;
+        gap: 12px;
     }
-    .header-contents p{
-       display: none;
+    .header-contents h2{
+        font-size: clamp(1.35rem, 5vw, 1.65rem);
     }
-    .header-contents button{
-        padding: 2vw 4vw;
+    .header-desc--full{
+        display: none;
+    }
+    .header-desc--short{
+        display: block;
+        font-size: 0.9rem;
+    }
+    .header-dots{
+        bottom: 12px;
     }
 }

@@ -40,14 +40,21 @@
     padding: 10px;
     border-radius: 4px;
 }
+.login-popup-inputs input:focus{
+    border-color: var(--bh-primary);
+}
 .login-popup-container button{
     border: none;
     padding: 10px;
     border-radius: 4px;
     color: white;
-    background-color: #FF4C24;
+    background-color: var(--bh-primary);
     font-size: 15px;
     cursor: pointer;
+    transition: background 0.2s;
+}
+.login-popup-container button:hover{
+    background-color: var(--bh-primary-dark);
 }
 .login-popup-condition{
     display: flex;
@@ -62,7 +69,7 @@
 
 
 .login-popup p span{
-    color: #FF4C24;
+    color: var(--bh-primary-dark);
     font-weight: 500;
     cursor: pointer;
 }

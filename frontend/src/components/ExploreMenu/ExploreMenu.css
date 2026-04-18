@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    scroll-margin-top: 28px;
 }
 .explore-menu h1{
-    color: #262626;
-    font-weight: 500;
+    color: var(--bh-nav-text);
+    font-weight: 600;
 }
 .explore-menu-text{
     max-width: 60%;
@@ -13,32 +14,80 @@
 }
 .explore-menu-list{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: clamp(18px, 2.8vw, 32px);
     text-align: center;
     margin: 20px 0px;
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding: 10px 4px 14px 4px;
+    padding-right: max(32px, 6vw);
+    scrollbar-width: thin;
+}
+@media (min-width: 900px) {
+    .explore-menu-list{
+        justify-content: space-between;
+        gap: clamp(12px, 1.5vw, 24px);
+        padding-right: 4px;
+    }
 }
 .explore-menu-list::-webkit-scrollbar{
-    display: none;
+    height: 6px;
+}
+.explore-menu-list::-webkit-scrollbar-thumb{
+    background: var(--bh-border-light, #99f6e4);
+    border-radius: 999px;
+}
+.explore-menu-list-item{
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 92px;
+    min-width: 92px;
+}
+@media (min-width: 900px) {
+    .explore-menu-list-item{
+        width: 100px;
+        min-width: 100px;
+    }
 }
 .explore-menu-list-item img{
-    width: 7.5vw;
+    width: 80px;
+    height: 80px;
     min-width: 80px;
+    object-fit: cover;
     cursor: pointer;
     border-radius: 50%;
     transition: 0.2s;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+@media (min-width: 900px) {
+    .explore-menu-list-item img{
+        width: 88px;
+        height: 88px;
+        min-width: 88px;
+    }
 }
 .explore-menu-list-item .active{
-    border: 4px solid tomato;
+    border: 4px solid var(--bh-primary);
     padding: 2px;
 }
 .explore-menu-list-item p{
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     color: #747474;
-    font-size: max(1.4vw,16px);
+    font-size: clamp(13px, 1.35vw, 16px);
+    line-height: 1.25;
     cursor: pointer;
+    max-width: 100%;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 .explore-menu hr{
     margin: 10px 0px;

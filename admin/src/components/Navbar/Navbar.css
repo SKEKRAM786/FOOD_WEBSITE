@@ -2,11 +2,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4%;
+    padding: 14px 4%;
+    background: #fff;
+    border-bottom: 1px solid var(--bh-admin-border);
+    box-shadow: 0 1px 0 rgba(13, 148, 136, 0.06);
 }
-.navbar .logo{
-    width: max(10%,80px);
+.navbar-brand{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+}
+.navbar-brand-title{
+    font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+    font-weight: 800;
+    color: var(--bh-nav-text);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+.navbar-brand-sub{
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--bh-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 .navbar .profile{
-    width: 40px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--bh-surface-tint);
+    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.35);
 }

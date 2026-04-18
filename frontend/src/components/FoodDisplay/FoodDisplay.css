@@ -4,6 +4,13 @@
 .food-display h2{
     font-size: max(2vw,24px);
     font-weight: 600;
+    color: var(--bh-nav-text);
+}
+.food-display-search-hint{
+    margin-top: 8px;
+    font-size: 15px;
+    color: #64748b;
+    font-weight: 500;
 }
 .food-display-list{
     display: grid;
@@ -11,4 +18,16 @@
     margin-top: 30px;
     gap: 30px;
     row-gap: 50px;
+}
+
+.food-display-empty{
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 28px 16px;
+    text-align: center;
+    color: #64748b;
+    font-size: 16px;
+    background: var(--bh-surface-tint-2, #f8fafc);
+    border-radius: 12px;
+    border: 1px dashed var(--bh-border-light);
 }

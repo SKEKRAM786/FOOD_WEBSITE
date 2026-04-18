@@ -6,6 +6,7 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js"
+    
   },
   "author": "",
   "license": "ISC",
